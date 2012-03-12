@@ -24,12 +24,13 @@ navigator.webkitGetUserMedia(
 );
 
 document.getElementById('capture').onclick = function () {
+    var just_before = CAPTURE['capture_buffer'];
     var context = document.getElementById('main').getContext('2d');
     context.drawImage(video, 0, 0);
 
-    for ( var i = 1; i <= CAPTURE['capture_buffer'].length; ++i ) {
+    for ( var i = 1; i <= just_before.length; ++i ) {
         var context = document.getElementById('sub' + i).getContext('2d');
-        context.drawImage( CAPTURE['capture_buffer'][i-1], 0, 0);
+        context.drawImage( just_before[i-1], 0, 0);
         if ( i >= 5 ) {
             break;
         }
