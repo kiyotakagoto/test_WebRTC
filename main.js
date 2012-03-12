@@ -5,6 +5,7 @@ navigator.webkitGetUserMedia(
     // success
     function ( stream ) {
         video.src = window.webkitURL.createObjectURL( stream );
+        document.getElementById('msg').innerHTML = 'get video stream';
     },
     function ( error ) {
         console.log('Unable to get video stream');
