@@ -11,3 +11,8 @@ navigator.webkitGetUserMedia(
         console.log('Unable to get video stream');
     }
 );
+
+document.getElementById('capture').onclick = function () {
+    var context = document.getElementById('canvas1').getContext('2d');
+    context.drawImage(video, 0, 0);
+};
