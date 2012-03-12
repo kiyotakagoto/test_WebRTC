@@ -28,10 +28,10 @@ document.getElementById('capture').onclick = function () {
     var context = document.getElementById('main').getContext('2d');
     context.drawImage(video, 0, 0);
 
-    for ( var i = 1; i <= just_before.length; ++i ) {
+    for ( var i = 0; i < just_before.length; ++i ) {
         var context = document.getElementById('sub' + i).getContext('2d');
-        context.drawImage( just_before[i-1], 0, 0);
-        if ( i >= 5 ) {
+        context.drawImage( just_before[i], 0, 0);
+        if ( i >= 4 ) {
             break;
         }
     }
