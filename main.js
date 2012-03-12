@@ -13,7 +13,7 @@ navigator.webkitGetUserMedia(
     // success
     function ( stream ) {
         video.src = window.webkitURL.createObjectURL( stream );
-        document.getElementById('msg').innerHTML = 'get video stream';
+        console.log('get video stream');
     },
     function ( error ) {
         console.log('Unable to get video stream');
@@ -32,6 +32,7 @@ document.getElementById('live').onclick = function () {
 /**
  * キャプチャー画像保存
  */
+/*
 function saveImage () {
     var capture_image = document.getElementById('main').toDataURL();
     capture_image = imgdata.replace('data:image/png;base64,', '');
@@ -48,3 +49,4 @@ function saveImage () {
         }
     } );
 }
+*/
