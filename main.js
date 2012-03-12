@@ -1,33 +1,15 @@
-var CAPTURE = {};
-CAPTURE['interval'] = 200;
-CAPTURE['capture_buffer'] = []
-CAPTURE['capture_sequence'];
-
-var video = document.getElementById('live');
-
 /**
- * ビデオ表示
+ * 
  */
-navigator.webkitGetUserMedia(
-    'video',
-    // success
-    function ( stream ) {
-        video.src = window.webkitURL.createObjectURL( stream );
-        document.getElementById('msg').innerHTML = 'get video stream';
-    },
-    function ( error ) {
-        console.log('Unable to get video stream');
-    }
-);
-
-/**
- * キャプチャーイベント登録
- */
-document.getElementById('live').onclick = function () {
-    var just_before = CAPTURE['capture_buffer'];
+$('#source_url').change( function () {
+    $('#picture').attr( 'src', $(this).attr('value') );
     var context = document.getElementById('main').getContext('2d');
-    context.drawImage(video, 0, 0);
-};
+    context.drawImage( document.getElementById('picture'), 0, 0);
+});
+
+$('#save_button').click( function () {
+    saveImage();
+});
 
 /**
  * キャプチャー画像保存
@@ -37,7 +19,7 @@ function saveImage () {
     capture_image = imgdata.replace('data:image/png;base64,', '');
 
     $.ajax( {
-        url : '',
+        url : './save.pl',
         type : 'POST',
         data : 'capture=' + capture_image,
         success : function () {
