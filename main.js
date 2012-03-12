@@ -5,35 +5,46 @@ CAPTURE['capture_sequence'];
 
 var video = document.getElementById('live');
 
+/**
+ * ビデオ表示
+ */
 navigator.webkitGetUserMedia(
     'video',
     // success
     function ( stream ) {
         video.src = window.webkitURL.createObjectURL( stream );
         document.getElementById('msg').innerHTML = 'get video stream';
-        CAPTURE['capture_sequence'] = setInterval( function () {
-            if ( CAPTURE['capture_buffer'].length >= 5 ) {
-                CAPTURE['capture_buffer'].shift;
-            }
-            CAPTURE['capture_buffer'].push(video);
-        }, CAPTURE['interval']);
     },
     function ( error ) {
         console.log('Unable to get video stream');
     }
 );
 
-document.getElementById('capture').onclick = function () {
+/**
+ * キャプチャーイベント登録
+ */
+document.getElementById('live').onclick = function () {
     var just_before = CAPTURE['capture_buffer'];
     var context = document.getElementById('main').getContext('2d');
     context.drawImage(video, 0, 0);
-
-    for ( var i = 0; i < just_before.length; ++i ) {
-        var context = document.getElementById('sub' + i).getContext('2d');
-        context.drawImage( just_before[i], 0, 0);
-        if ( i >= 4 ) {
-            break;
-        }
-    }
 };
 
+/**
+ * キャプチャー画像保存
+ */
+function saveImage () {
+    var capture_image = document.getElementById('main').toDataURL();
+    capture_image = imgdata.replace('data:image/png;base64,', '');
+
+    $.ajax( {
+        url : '',
+        type : 'POST',
+        data : 'capture=' + capture_image,
+        success : function () {
+            console.log('success');
+        },
+        error : function () {
+            console.log('error');
+        }
+    } );
+}

@@ -10,15 +10,16 @@
     <div style='border:1px solid blue'>
       <video id="live" width='400px' height='400px' autoplay></video>
     </div>
-    <canvas id='main' style='border:1px solid blue'></canvas>
-    <canvas id='sub0' style='border:3px dashed green'></canvas>
-    <canvas id='sub1' style='border:3px dashed green'></canvas>
-    <canvas id='sub2' style='border:3px dashed green'></canvas>
-    <canvas id='sub3' style='border:3px dashed green'></canvas>
-    <canvas id='sub4' style='border:3px dashed green'></canvas>
 
-    <input type='button' id='capture' value='capture' />
+    <canvas id='main' style='border:1px solid blue'></canvas>
+    <br/>
+    <input type='text' id='comment' placeholder='コメント' />
+    <br/>
+    <input type='text' id='tag' placeholder='番組名を入力'/>
+    <br/>
+    <input type='button' value='共有' />
 
     <script src='main.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
     </body>
   </html>
